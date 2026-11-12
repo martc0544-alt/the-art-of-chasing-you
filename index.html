@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question 🌼</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: "Trebuchet MS", sans-serif;
+    background: linear-gradient(135deg, #fffbea, #fff5d9, #f4f8e8);
+    color: #66744d;
+}
+
+/* Daisy decorations */
+.daisy {
+    position: fixed;
+    width: 65px;
+    height: 65px;
+    pointer-events: none;
+    animation: sway 4s ease-in-out infinite;
+}
+
+.daisy .petal {
+    position: absolute;
+    width: 17px;
+    height: 27px;
+    background: #fff;
+    border-radius: 50%;
+    left: 24px;
+    top: 5px;
+    transform-origin: 8px 28px;
+}
+
+.daisy .petal:nth-child(2) { transform: rotate(45deg); }
+.daisy .petal:nth-child(3) { transform: rotate(90deg); }
+.daisy .petal:nth-child(4) { transform: rotate(135deg); }
+.daisy .petal:nth-child(5) { transform: rotate(180deg); }
+.daisy .petal:nth-child(6) { transform: rotate(225deg); }
+.daisy .petal:nth-child(7) { transform: rotate(270deg); }
+.daisy .petal:nth-child(8) { transform: rotate(315deg); }
+
+.daisy .center {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    background: #f5d66b;
+    border-radius: 50%;
+    top: 23px;
+    left: 23px;
+}
+
+.d1 { top: 8%; left: 8%; }
+.d2 { top: 15%; right: 12%; transform: scale(.8); animation-delay: .5s; }
+.d3 { bottom: 12%; left: 14%; transform: scale(1.1); animation-delay: 1s; }
+.d4 { bottom: 8%; right: 10%; transform: scale(.9); animation-delay: 1.5s; }
+.d5 { top: 48%; left: 3%; transform: scale(.65); }
+.d6 { top: 55%; right: 3%; transform: scale(.7); }
+
+@keyframes sway {
+    0%, 100% { rotate: -8deg; }
+    50% { rotate: 8deg; }
+}
+
+/* Main card */
+.card {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 440px);
+    padding: 40px 25px;
+    text-align: center;
+    background: rgba(255, 255, 255, .83);
+    border: 2px solid #f5e8b9;
+    border-radius: 28px;
+    box-shadow: 0 12px 35px rgba(151, 142, 91, .13);
+}
+
+h1 {
+    font-size: clamp(25px, 6vw, 34px);
+    margin: 12px 0;
+    color: #718052;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #96966f;
+    margin-bottom: 28px;
+}
+
+.flower-icon {
+    font-size: 45px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    min-height: 65px;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 13px 27px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s, background .2s;
+}
+
+#yesButton {
+    background: #d5e4b6;
+    color: #53683e;
+    position: relative;
+    z-index: 3;
+}
+
+#yesButton:hover {
+    background: #c4d99c;
+}
+
+#noButton {
+    background: #f8d9d4;
+    color: #986c65;
+    position: relative;
+}
+
+.decline {
+    display: block;
+    margin: 25px auto 0;
+    padding: 5px;
+    background: transparent;
+    color: #a19b83;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+#success {
+    display: none;
+    animation: appear .8s ease forwards;
+}
+
+#success h1 {
+    color: #718052;
+}
+
+#success p {
+    color: #898c6d;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+#declined {
+    display: none;
+    animation: appear .5s ease forwards;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating petals */
+.petal-float {
+    position: fixed;
+    top: -30px;
+    color: #e9c8a9;
+    opacity: .65;
+    pointer-events: none;
+    animation: fall linear infinite;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Daisy decorations -->
+<div class="daisy d1">
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="center"></i>
+</div>
+<div class="daisy d2">
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="center"></i>
+</div>
+<div class="daisy d3">
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="center"></i>
+</div>
+<div class="daisy d4">
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="center"></i>
+</div>
+<div class="daisy d5">
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="center"></i>
+</div>
+<div class="daisy d6">
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i>
+    <i class="center"></i>
+</div>
+
+<main class="card">
+
+    <section id="question">
+        <div class="flower-icon">🌼</div>
+        <h1>Will you be my girlfriend?</h1>
+        <p class="subtitle">I have a little question for you...</p>
+
+        <div class="buttons">
+            <button id="yesButton">YES! 🌷</button>
+            <button id="noButton">No</button>
+        </div>
+
+        <button class="decline" id="declineButton">
+            I'd rather say no
+        </button>
+    </section>
+
+    <section id="success">
+        <div class="flower-icon">🌼🌷🌼</div>
+        <h1>YAYYYY!!</h1>
+        <p>Can't wait to make great memories with you:&gt;</p>
+        <div class="flower-icon">💛</div>
+    </section>
+
+    <section id="declined">
+        <div class="flower-icon">🌼</div>
+        <h1>Thank you for being honest.</h1>
+        <p>I respect your answer. Wishing you all the best! 💛</p>
+    </section>
+
+</main>
+
+<script>
+const yesButton = document.getElementById("yesButton");
+const noButton = document.getElementById("noButton");
+const question = document.getElementById("question");
+const success = document.getElementById("success");
+const declined = document.getElementById("declined");
+const declineButton = document.getElementById("declineButton");
+
+let attempts = 0;
+let lastDodge = 0;
+let yesScale = 1;
+
+function dodgeNo() {
+    const now = Date.now();
+
+    // Prevent multiple triggers from one interaction
+    if (now - lastDodge < 350) return;
+    lastDodge = now;
+
+    attempts++;
+
+    if (attempts === 1) {
+        noButton.textContent = "ihh bawal no";
+    } else {
+        noButton.textContent = "sige na pleaseee";
+    }
+
+    // Make YES grow each time NO is approached
+    yesScale = Math.min(yesScale + 0.10, 1.8);
+    yesButton.style.transform = `scale(${yesScale})`;
+
+    // Move NO somewhere else on the screen
+    const rect = noButton.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width - 15;
+    const maxY = window.innerHeight - rect.height - 15;
+
+    const x = Math.max(15, Math.random() * maxX);
+    const y = Math.max(15, Math.random() * maxY);
+
+    noButton.style.position = "fixed";
+    noButton.style.left = x + "px";
+    noButton.style.top = y + "px";
+    noButton.style.zIndex = "5";
+}
+
+noButton.addEventListener("pointerenter", dodgeNo);
+noButton.addEventListener("touchstart", dodgeNo, { passive: true });
+
+yesButton.addEventListener("click", () => {
+    question.style.display = "none";
+    declined.style.display = "none";
+    success.style.display = "block";
+});
+
+declineButton.addEventListener("click", () => {
+    question.style.display = "none";
+    success.style.display = "none";
+    declined.style.display = "block";
+});
+
+// Falling petals
+function createPetal() {
+    const petal = document.createElement("div");
+    petal.className = "petal-float";
+    petal.textContent = Math.random() > 0.5 ? "✿" : "🌼";
+
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.fontSize = (12 + Math.random() * 12) + "px";
+    petal.style.animationDuration = (7 + Math.random() * 7) + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 15000);
+}
+
+setInterval(createPetal, 900);
+</script>
+
+</body>
+</html>
